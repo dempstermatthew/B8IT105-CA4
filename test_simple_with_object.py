@@ -1,6 +1,6 @@
 import unittest
 from process_changes_with_object import get_commits, read_file
-from changesvisualise import  initialSetup, loadDataFrame, getAuthorInfo, getAuthorLineCount, getAuthorDateLineInfo, getAuthorDateLineCounts, getAuthorSatSunLineCounts, getTimeLineInfo, getTimeLineCounts, getAuthorTimeLineInfo, getAuthorTimeLineCounts
+from changesvisualise import  initialSetup, loadDataFrame, getAuthorInfo, getAuthorLineCount, getAuthorDateLineInfo, getAuthorDateLineCounts, getAuthorSatSunLineCounts, getTimeLineInfo, getTimeLineCounts, getAuthorTimeLineInfo, getAuthorTimeLineCounts, getAuthorAddDelEditInfo, getAuthorAddEditDelCounts
 
 class TestCommits(unittest.TestCase):
     #read in test file
@@ -49,6 +49,14 @@ class TestVizualResult(unittest.TestCase):
         self.dfAuthorDate = getAuthorDateLineInfo(self.viz)
         self.assertEqual('Vincent' ,self.dfAuthorDate.loc[2]['author'])  ##positve test
         self.assertNotEqual('Vincent' ,self.dfAuthorDate.loc[1]['author']) ##neg test
+        
+    ### groups the dataframe by author, date and sums no_of_lines
+    def test_getAuthorAddEditDel(self):
+        self.dfAuthorAddEditDel = getAuthorAddDelEditInfo(self.viz)
+        self.dfAuthorAddEditDelCnt = getAuthorAddEditDelCounts(self.viz,self.dfAuthorAddEditDel)
+        self.assertEqual(9 ,self.dfAuthorAddEditDelCnt.iloc[0]['add'])  ##positve test
+        self.assertNotEqual(7 ,self.dfAuthorAddEditDelCnt.iloc[0]['add']) ##neg test
+        
         
     ### groups the dataframe by author, date and sums no_of_lines
     def test_getAuthorDateLineCounts(self):

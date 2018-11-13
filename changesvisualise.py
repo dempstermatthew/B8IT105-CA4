@@ -153,7 +153,7 @@ def getAuthorDateLineCounts(viz, dfAuthorDate): # groups the dataframe by author
     dfAuthorDateCnt = viz.getAuthorDateLineCounts(dfAuthorDate)
     return dfAuthorDateCnt
 
-def getAuthorAddDelEdit(viz): # groups the dataframe byauthor add,edit and del
+def getAuthorAddDelEditInfo(viz): # groups the dataframe byauthor add,edit and del
     dfAuthorAddEditDel = viz.getAuthorAddDelEdit()
     return dfAuthorAddEditDel 
 
